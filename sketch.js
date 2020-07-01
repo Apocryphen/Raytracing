@@ -14,7 +14,7 @@ function setup() {
   createCanvas(800, 400);
   frameRate(30);
 
-  fov = PI/4;
+  fov = PI/2;
   //Create the rays and render lines
   for (let i = 0; i < numOfRays; i++){
     rays.push( new Ray(100,100, maxRenderDist, (i*(fov))/numOfRays));
@@ -52,7 +52,7 @@ function render(){
           line(player.pos.x, player.pos.y, collidePoint.x, collidePoint.y);
           curRay.length = length;
           //Maps ray length to camera plane
-          length = length * cos(curRay.startDir - PI/4);
+          length = length * sin((PI/2)-curRay.startDir + (fov/2));
           //Render the length as a line
           renderLines[i].y1 = map (length, 0, distToDisplay, 0, height/2);
           renderLines[i].y2 = map (length, 0, distToDisplay, height, height/2);
